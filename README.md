@@ -12,3 +12,6 @@ In this way the communication from the NFVO to the VNFManager can be tested with
 
 The endpoint to use in the NSDs that should be managed by the dummy VNFManager is "dummy".
 
+For installing and starting the dummy vnfm, navigate into the project's root directory and execute *./gradlew clean build*. 
+
+Start it by executing *java -jar build/libs/dummy-vnfm-amqp-0.15-SNAPSHOT.jar*.

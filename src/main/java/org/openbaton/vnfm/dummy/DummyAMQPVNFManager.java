@@ -24,6 +24,7 @@ import org.openbaton.catalogue.mano.record.VirtualNetworkFunctionRecord;
 import org.openbaton.catalogue.nfvo.Action;
 import org.openbaton.catalogue.nfvo.ConfigurationParameter;
 import org.openbaton.catalogue.nfvo.DependencyParameters;
+import org.openbaton.catalogue.nfvo.VimInstance;
 import org.openbaton.common.vnfm_sdk.amqp.AbstractVnfmSpringAmqp;
 import org.springframework.boot.SpringApplication;
 
@@ -45,7 +46,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
      * @param scripts
      */
     @Override
-    public VirtualNetworkFunctionRecord instantiate(VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, Object scripts) throws Exception {
+    public VirtualNetworkFunctionRecord instantiate(VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, Object scripts, List<VimInstance> vimInstances) throws Exception {
         log.info("Instantiation of VirtualNetworkFunctionRecord " + virtualNetworkFunctionRecord.getName());
 
         // vnfmHelper.saveScriptOnEms(virtualNetworkFunctionRecord, scripts);
@@ -74,6 +75,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
 
     @Override
     public VirtualNetworkFunctionRecord scale(Action scaleInOrOut, VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, VNFCInstance component, Object scripts, VNFRecordDependency dependency) throws Exception {
+        Thread.sleep((int) (Math.random() * 500) + 1000);
         return virtualNetworkFunctionRecord;
     }
 

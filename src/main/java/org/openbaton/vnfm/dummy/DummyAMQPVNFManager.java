@@ -29,6 +29,7 @@ import org.openbaton.common.vnfm_sdk.amqp.AbstractVnfmSpringAmqp;
 import org.springframework.boot.SpringApplication;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,12 @@ import java.util.Map;
 public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
 
 
+
+
+    protected void setVnfmHelper() {
+
+    }
+
     /**
      * This operation allows creating a VNF instance.
      *
@@ -46,7 +53,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
      * @param scripts
      */
     @Override
-    public VirtualNetworkFunctionRecord instantiate(VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, Object scripts, List<VimInstance> vimInstances) throws Exception {
+    public VirtualNetworkFunctionRecord instantiate(VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, Object scripts, Map<String, Collection<VimInstance>> vimInstances) throws Exception {
         log.info("Instantiation of VirtualNetworkFunctionRecord " + virtualNetworkFunctionRecord.getName());
 
         // vnfmHelper.saveScriptOnEms(virtualNetworkFunctionRecord, scripts);
@@ -61,11 +68,6 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
         Thread.sleep((int) (Math.random() * 5000) + 4000);
 
         return virtualNetworkFunctionRecord;
-    }
-
-
-    protected void setVnfmHelper() {
-
     }
 
     @Override

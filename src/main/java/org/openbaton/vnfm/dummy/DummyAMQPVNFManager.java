@@ -39,9 +39,6 @@ import java.util.Map;
 
 public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
 
-
-
-
     protected void setVnfmHelper() {
 
     }
@@ -173,8 +170,4 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
 
     }
 
-    @Override
-    protected void checkEMS(String hostname){
-	    return;
-    }
 }

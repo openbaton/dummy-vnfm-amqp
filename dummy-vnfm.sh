@@ -6,7 +6,7 @@ source ${_dummy_vnfm_base}/gradle.properties
 
 _version=${version}
 
-_openbaton_config_file=/etc/openbaton/openbaton.properties
+_dummy_config_file=/etc/openbaton/openbaton.properties
 
 
 function check_rabbitmq {
@@ -42,17 +42,19 @@ function start {
 
     check_rabbitmq
     check_already_running
-    if [ 0 -eq $? ]
-        then
-	    #screen -X eval "chdir $PWD"
-	    # TODO add check if the session openbaton already exists, else start the dummy-vnfm in a new screen session.
-	    #
-	    # At the moment the dummy-vnfm starts automatically in a second window in the openbaton session screen
-	    pushd "${_openbaton_base}/nfvo"
-	    screen -S openbaton -p 0 -X screen -t dummy-vnfm java -jar "../dummy-vnfm-amqp/build/libs/dummy-vnfm-amqp-${_version}.jar"
-	    popd
-	    #screen -c .screenrc -r -p 0
+    if [ 0 -eq $? ]; then
+	    screen_exists=$(screen -ls | grep openbaton | wc -l);
+        if [ "${screen_exists}" -eq "0" ]; then
+            echo "Starting the Dummy-VNFM-Amqp in a new screen session (attach to the screen with screen -x openbaton)"
+            screen -c screenrc -d -m -S openbaton -t dummy-vnfm-amqp java -jar "${_dummy_vnfm_base}/build/libs/dummy-vnfm-amqp-${_version}.jar" --spring.config.location=file:${_dummy_config_file}
+
+        elif [ "${screen_exists}" -ne "0" ]; then
+            echo "Starting the Generic-VNFM in the existing screen session (attach to the screen with screen -x openbaton)"
+            screen -S openbaton -p 0 -X screen -t dummy-vnfm-amqp java -jar "${_dummy_vnfm_base}/build/libs/dummy-vnfm-amqp-${_version}.jar" --spring.config.location=file:${_dummy_config_file}
+
+        fi
     fi
+
 }
 
 function stop {

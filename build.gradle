@@ -21,6 +21,7 @@ buildscript {
 
 plugins {
     id 'net.researchgate.release' version '2.1.2'
+    id 'com.github.sherter.google-java-format' version '0.3.2'
 }
 
 apply plugin: 'spring-boot'
@@ -68,9 +69,11 @@ repositories {
 
 dependencies {
 
-    compile 'org.openbaton:vnfm-sdk-amqp:2.0.1'
+    compile 'org.openbaton:vnfm-sdk-amqp:2.1.1'
     compile 'org.ini4j:ini4j:0.5.4'
     compile 'org.hibernate:hibernate-core:4.3.10.Final'
 
     testCompile 'junit:junit:4.12'
 }
+
+build.dependsOn verifyGoogleJavaFormat

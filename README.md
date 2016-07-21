@@ -17,11 +17,19 @@ The NFVO has to contain the test-plugin in the folder **plugins/vim-drivers**, t
 # How to install the Dummy VNFManager Amqp
 
 Git clone the project and change into it's root directory. 
-Execute *./dummy-vnfm.sh compile* to compile it. 
+Execute 
+```bash
+./dummy-vnfm.sh compile
+```
+to compile it. 
 
 # How to use the Dummy VNFManager Amqp
 
-To start the Dummy-VNFM-Amqp execute *./dummy-vnfm.sh start* in the project's root directory.  
+To start the Dummy-VNFM-Amqp execute
+ ```bash
+ ./dummy-vnfm.sh start
+ ```
+in the project's root directory.  
 This will create a new screen window which you can access using *screen -x openbaton*.  
 If you want to run the Dummy VNFManager Amqp on another machine than on which rabbitmq is running you first have to configure it.  
 Either you use the *application.properties* file in the project's resources folder to configure it or you create the file 

@@ -24,9 +24,10 @@ Execute *./dummy-vnfm.sh compile* to compile it.
 To start the Dummy-VNFM-Amqp execute *./dummy-vnfm.sh start* in the project's root directory.  
 This will create a new screen window which you can access using *screen -x openbaton*.  
 If you want to run the Dummy VNFManager Amqp on another machine than on which rabbitmq is running you first have to configure it.  
-You can either change the property *spring.rabbitmq.host* to the ip address of the host running rabbitmq in the *application.properties* file 
-in the project's resources folder or you can create a properties file */etc/openbaton/dummy-vnfm-amqp.properties*, copy the previously mentioned 
-*application.properties* file's content into it and change the ip address there.  
+Either you use the *application.properties* file in the project's resources folder to configure it or you create the file 
+*/etc/openbaton/dummy-vnfm-amqp.properties*, copy the previously mentioned *application.properties* file's content into it 
+and configure it there.  
+Then change the properties *spring.rabbitmq.host* and *spring.rabbitmq.port* to the ip address and host on which rabbitmq are running.  
 If you decided to create the file */etc/openbaton/dummy-vnfm-amqp.properties* the Dummy VNFManager Amqp will only use this one so make sure 
 that all the properties from the file *application.properties* are present.  
 To use the Dummy-VNFManager-Amqp for "deploying" a network service you have to store a VimInstance with type *test* in the NFVO 

@@ -10,16 +10,21 @@ When the NFVO sends commands to the Dummy-VNFManager-Amqp, it will answer as if 
 In this way Openbaton can be tested without actually deploying anything. 
 
 # Technical Requirements
-A running NFVO.  
-The NFVO has to contain the test-plugin in the folder **plugins/vim-drivers**, this will probably already be in place. 
 
+In order to execute the dummy-vnfm-amqp, you need to have a running and configured NFVO. 
 
-# How to install the Dummy VNFManager Amqp
+# How to install the Dummy VNFManager Amqp from source code
 
-Git clone the project and change into it's root directory. 
-Execute 
+Git clone the project into the /opt/openbaton directory (you may need to be logged in as root user, unless you change the permissions on the /opt/openbaton folder): 
+
 ```bash
-./dummy-vnfm.sh compile
+mkdir /opt/openbaton
+git clone https://github.com/openbaton/dummy-vnfm-amqp.git
+```
+
+And Execute 
+```bash
+cd /opt/openbaton/dummy-vnfm-amqp; ./dummy-vnfm.sh compile
 ```
 to compile it. 
 
@@ -27,9 +32,9 @@ to compile it.
 
 To start the Dummy-VNFM-Amqp execute
  ```bash
- ./dummy-vnfm.sh start
+ cd /opt/openbaton/dummy-vnfm-amqp;./dummy-vnfm.sh start
  ```
-in the project's root directory.  
+
 This will create a new screen window which you can access using *screen -x openbaton*.  
 If you want to run the Dummy VNFManager Amqp on another machine than on which rabbitmq is running you first have to configure it.  
 Either you use the *application.properties* file in the project's resources folder to configure it or you create the file 

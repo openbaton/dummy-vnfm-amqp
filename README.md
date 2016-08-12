@@ -3,6 +3,8 @@
   Copyright © 2015-2016 [Open Baton](http://openbaton.org). 
   Licensed under [Apache v2 License](http://www.apache.org/licenses/LICENSE-2.0).
 
+[![Build Status](https://travis-ci.org/openbaton/dummy-vnfm-amqp.svg?branch=master)](https://travis-ci.org/openbaton/dummy-vnfm-amqp)
+
 # Dummy VNFManager Amqp
 The Dummy-VNFManager-Amqp imitates the behaviour of a real VNFManager. For the communication with the NFVO it uses AMQP.  
 If you use the Dummy-VNFManager-Amqp for deploying a network service it will not create any resources. 

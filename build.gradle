@@ -25,22 +25,6 @@ plugins {
 }
 
 apply plugin: 'spring-boot'
-release {
-    failOnCommitNeeded = true
-    failOnPublishNeeded = true
-    failOnSnapshotDependencies = true
-    failOnUnversionedFiles = true
-    failOnUpdateNeeded = true
-    revertOnFail = true
-    preCommitText = ''
-    preTagCommitMessage = 'Pre-tag commit: '
-    tagCommitMessage = 'Creating tag: '
-    newVersionCommitMessage = 'New version commit: '
-    tagTemplate = '${version}'
-    versionPropertyFile = 'gradle.properties'
-    versionProperties = []
-}
-
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
@@ -61,15 +45,15 @@ project.ext {
 }
 
 repositories {
-    mavenCentral()
-    maven {
-        url "http://get.openbaton.org:8081/nexus/content/groups/public"
-    }
+        mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
 }
 
 dependencies {
 
-    compile 'org.openbaton:vnfm-sdk-amqp:2.1.2-SNAPSHOT'
+    compile 'org.openbaton:vnfm-sdk-amqp:2.1.4-SNAPSHOT'
     compile 'org.ini4j:ini4j:0.5.4'
     compile 'org.hibernate:hibernate-core:4.3.10.Final'
 

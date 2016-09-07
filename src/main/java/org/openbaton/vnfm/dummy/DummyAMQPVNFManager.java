@@ -156,6 +156,31 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   }
 
   @Override
+  public VirtualNetworkFunctionRecord stop(
+      VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) throws Exception {
+    log.info("Stop VNFR " + virtualNetworkFunctionRecord.getName());
+    return virtualNetworkFunctionRecord;
+  }
+
+  @Override
+  public VirtualNetworkFunctionRecord startVNFCInstance(
+      VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, VNFCInstance vnfcInstance)
+      throws Exception {
+    log.info(
+        "Start VNFCInstance " + vnfcInstance.getHostname() + " with id " + vnfcInstance.getId());
+    return virtualNetworkFunctionRecord;
+  }
+
+  @Override
+  public VirtualNetworkFunctionRecord stopVNFCInstance(
+      VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, VNFCInstance vnfcInstance)
+      throws Exception {
+    log.info(
+        "Stop VNFCInstance " + vnfcInstance.getHostname() + " with id " + vnfcInstance.getId());
+    return virtualNetworkFunctionRecord;
+  }
+
+  @Override
   public VirtualNetworkFunctionRecord configure(
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) throws InterruptedException {
     Thread.sleep((int) (Math.random() * 5000));

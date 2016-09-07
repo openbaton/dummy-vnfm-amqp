@@ -3,6 +3,8 @@
   Copyright © 2015-2016 [Open Baton](http://openbaton.org). 
   Licensed under [Apache v2 License](http://www.apache.org/licenses/LICENSE-2.0).
 
+[![Build Status](https://travis-ci.org/openbaton/dummy-vnfm-amqp.svg?branch=master)](https://travis-ci.org/openbaton/dummy-vnfm-amqp)
+
 # Dummy VNFManager Amqp
 The Dummy-VNFManager-Amqp imitates the behaviour of a real VNFManager. For the communication with the NFVO it uses AMQP.  
 If you use the Dummy-VNFManager-Amqp for deploying a network service it will not create any resources. 
@@ -10,16 +12,21 @@ When the NFVO sends commands to the Dummy-VNFManager-Amqp, it will answer as if 
 In this way Openbaton can be tested without actually deploying anything. 
 
 # Technical Requirements
-A running NFVO.  
-The NFVO has to contain the test-plugin in the folder **plugins/vim-drivers**, this will probably already be in place. 
 
+In order to execute the dummy-vnfm-amqp, you need to have a running and configured NFVO. 
 
-# How to install the Dummy VNFManager Amqp
+# How to install the Dummy VNFManager Amqp from source code
 
-Git clone the project and change into it's root directory. 
-Execute 
+Git clone the project into the /opt/openbaton directory (you may need to be logged in as root user, unless you change the permissions on the /opt/openbaton folder): 
+
 ```bash
-./dummy-vnfm.sh compile
+mkdir /opt/openbaton
+git clone https://github.com/openbaton/dummy-vnfm-amqp.git
+```
+
+And Execute 
+```bash
+cd /opt/openbaton/dummy-vnfm-amqp; ./dummy-vnfm.sh compile
 ```
 to compile it. 
 
@@ -27,9 +34,9 @@ to compile it.
 
 To start the Dummy-VNFM-Amqp execute
  ```bash
- ./dummy-vnfm.sh start
+ cd /opt/openbaton/dummy-vnfm-amqp;./dummy-vnfm.sh start
  ```
-in the project's root directory.  
+
 This will create a new screen window which you can access using *screen -x openbaton*.  
 If you want to run the Dummy VNFManager Amqp on another machine than on which rabbitmq is running you first have to configure it.  
 Either you use the *application.properties* file in the project's resources folder to configure it or you create the file 
@@ -56,7 +63,7 @@ OpenBaton is an open source project providing a comprehensive implementation of 
 
 Open Baton is a ETSI NFV MANO compliant framework. Open Baton was part of the OpenSDNCore (www.opensdncore.org) project started almost three years ago by Fraunhofer FOKUS with the objective of providing a compliant implementation of the ETSI NFV specification. 
 
-Open Baton is easily extensible. It integrates with OpenStack, and provides a plugin mechanism for supporting additional VIM types. It supports Network Service management either using a generic VNFM or interoperating with VNF-specific VNFM. It uses different mechanisms (REST or PUB/SUB) for interoperating with the VNFMs. It integrates with additional components for the runtime management of a Network Service. For instance, it provides autoscaling and fault management based on monitoring information coming from the the monitoring system available at the NFVI level.
+Open Baton is easily extensible. It integrates with OpenStack, and provides a plugin mechanism for supporting additional VIM types. It supports Network Service management either using a generic VNFM or interoperating with VNF-specific VNFM. It uses different mechanisms (REST or PUB/SUB) for interoperating with the VNFMs. It integrates with additional components for the runtime management of a Network Service. For instance, it provides autoscaling and fault management based on monitoring information coming from the monitoring system available at the NFVI level.
 
 # Source Code and documentation
 
@@ -68,7 +75,10 @@ Check the [Open Baton Website][openbaton]
 Follow us on Twitter @[openbaton][openbaton-twitter].
 
 # Licensing and distribution
+Copyright [2015-2016] Open Baton project
+
 Licensed under the Apache License, Version 2.0 (the "License");
+
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
@@ -83,10 +93,15 @@ limitations under the License.
 # Support
 The Open Baton project provides community support through the Open Baton Public Mailing List and through StackOverflow using the tags openbaton.
 
+# Supported by
+  <img src="https://raw.githubusercontent.com/openbaton/openbaton.github.io/master/images/fokus.png" width="250"/><img src="https://raw.githubusercontent.com/openbaton/openbaton.github.io/master/images/tu.png" width="150"/>
 
+
+[fokus-logo]: https://raw.githubusercontent.com/openbaton/openbaton.github.io/master/images/fokus.png
 [openbaton]: http://openbaton.org
 [openbaton-doc]: http://openbaton.org/documentation
 [openbaton-github]: http://github.org/openbaton
 [openbaton-logo]: https://raw.githubusercontent.com/openbaton/openbaton.github.io/master/images/openBaton.png
 [openbaton-mail]: mailto:users@openbaton.org
 [openbaton-twitter]: https://twitter.com/openbaton
+[tub-logo]: https://raw.githubusercontent.com/openbaton/openbaton.github.io/master/images/tu.png

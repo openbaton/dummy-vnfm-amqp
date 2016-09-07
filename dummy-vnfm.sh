@@ -48,9 +48,9 @@ function start {
             echo "Starting the Dummy-VNFM-Amqp in a new screen session (attach to the screen with screen -x openbaton)"
             if [ -f ${_dummy_config_file} ]; then
                 echo "Using external configuration file ${_dummy_config_file}"
-                screen -c screenrc -d -m -S openbaton -t dummy-vnfm-amqp java -jar "${_dummy_vnfm_base}/build/libs/dummy-vnfm-amqp-${_version}.jar" --spring.config.location=file:${_dummy_config_file}
+                screen -d -m -S openbaton -t dummy-vnfm-amqp java -jar "${_dummy_vnfm_base}/build/libs/dummy-vnfm-amqp-${_version}.jar" --spring.config.location=file:${_dummy_config_file}
             else
-                screen -c screenrc -d -m -S openbaton -t dummy-vnfm-amqp java -jar "${_dummy_vnfm_base}/build/libs/dummy-vnfm-amqp-${_version}.jar"
+                screen -d -m -S openbaton -t dummy-vnfm-amqp java -jar "${_dummy_vnfm_base}/build/libs/dummy-vnfm-amqp-${_version}.jar"
             fi
         elif [ "${screen_exists}" -ne "0" ]; then
             echo "Starting the Dummy-VNFM-Amqp in the existing screen session (attach to the screen with screen -x openbaton)"

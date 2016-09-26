@@ -21,10 +21,7 @@ import org.openbaton.catalogue.mano.descriptor.VirtualDeploymentUnit;
 import org.openbaton.catalogue.mano.record.VNFCInstance;
 import org.openbaton.catalogue.mano.record.VNFRecordDependency;
 import org.openbaton.catalogue.mano.record.VirtualNetworkFunctionRecord;
-import org.openbaton.catalogue.nfvo.Action;
-import org.openbaton.catalogue.nfvo.ConfigurationParameter;
-import org.openbaton.catalogue.nfvo.DependencyParameters;
-import org.openbaton.catalogue.nfvo.VimInstance;
+import org.openbaton.catalogue.nfvo.*;
 import org.openbaton.common.vnfm_sdk.amqp.AbstractVnfmSpringAmqp;
 import org.springframework.boot.SpringApplication;
 
@@ -94,7 +91,18 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   }
 
   @Override
-  public void updateSoftware() {}
+  public VirtualNetworkFunctionRecord updateSoftware(
+      Script script, VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) throws Exception {
+    log.info(
+        "Update software with script "
+            + script
+            + " on VNFR "
+            + virtualNetworkFunctionRecord.getName()
+            + " with id "
+            + virtualNetworkFunctionRecord.getId());
+    Thread.sleep(1000 + ((int) (Math.random() * 3000)));
+    return virtualNetworkFunctionRecord;
+  }
 
   @Override
   public VirtualNetworkFunctionRecord modify(

@@ -17,6 +17,7 @@ package org.openbaton.vnfm.dummy;
 
 import org.openbaton.catalogue.mano.common.Event;
 import org.openbaton.catalogue.mano.common.LifecycleEvent;
+import org.openbaton.catalogue.mano.descriptor.VNFComponent;
 import org.openbaton.catalogue.mano.descriptor.VirtualDeploymentUnit;
 import org.openbaton.catalogue.mano.record.VNFCInstance;
 import org.openbaton.catalogue.mano.record.VNFRecordDependency;
@@ -73,10 +74,16 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   public VirtualNetworkFunctionRecord scale(
       Action scaleInOrOut,
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord,
-      VNFCInstance component,
+      VNFComponent component,
       Object scripts,
       VNFRecordDependency dependency)
       throws Exception {
+    log.info(
+        scaleInOrOut.name()
+            + " on VNFR "
+            + virtualNetworkFunctionRecord.getName()
+            + " with id "
+            + virtualNetworkFunctionRecord.getId());
     Thread.sleep((int) (Math.random() * 500) + 1000);
     return virtualNetworkFunctionRecord;
   }
@@ -192,6 +199,20 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   public VirtualNetworkFunctionRecord configure(
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) throws InterruptedException {
     Thread.sleep((int) (Math.random() * 5000));
+    return virtualNetworkFunctionRecord;
+  }
+
+  @Override
+  public VirtualNetworkFunctionRecord resume(
+      VirtualNetworkFunctionRecord virtualNetworkFunctionRecord,
+      VNFCInstance vnfcInstance,
+      VNFRecordDependency dependency)
+      throws Exception {
+    log.info(
+        "Resume on VNFR "
+            + virtualNetworkFunctionRecord.getName()
+            + " with id "
+            + virtualNetworkFunctionRecord.getId());
     return virtualNetworkFunctionRecord;
   }
 

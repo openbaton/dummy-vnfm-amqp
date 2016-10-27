@@ -74,7 +74,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   public VirtualNetworkFunctionRecord scale(
       Action scaleInOrOut,
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord,
-      VNFComponent component,
+      VNFCInstance component,
       Object scripts,
       VNFRecordDependency dependency)
       throws Exception {
@@ -199,20 +199,6 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   public VirtualNetworkFunctionRecord configure(
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) throws InterruptedException {
     Thread.sleep((int) (Math.random() * 5000));
-    return virtualNetworkFunctionRecord;
-  }
-
-  @Override
-  public VirtualNetworkFunctionRecord resume(
-      VirtualNetworkFunctionRecord virtualNetworkFunctionRecord,
-      VNFCInstance vnfcInstance,
-      VNFRecordDependency dependency)
-      throws Exception {
-    log.info(
-        "Resume on VNFR "
-            + virtualNetworkFunctionRecord.getName()
-            + " with id "
-            + virtualNetworkFunctionRecord.getId());
     return virtualNetworkFunctionRecord;
   }
 

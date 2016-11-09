@@ -8,28 +8,12 @@ _dummy_config_file=/etc/openbaton/dummy-vnfm-amqp.properties
 _screen_name="dummy-vnfm-amqp"
 
 
-function check_rabbitmq {
-    if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	ps -aux | grep -v grep | grep rabbitmq > /dev/null
-        if [ $? -ne 0 ]; then
-            echo "rabbitmq is not running, let's try to start it..."
-            start_activemq_linux
-        fi
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-	ps aux | grep -v grep | grep rabbitmq > /dev/null
-        if [ $? -ne 0 ]; then
-            echo "rabbitmq is not running, let's try to start it..."
-            start_activemq_osx
-        fi
-    fi
-}
-
 function check_already_running {
-        result=$(screen -ls | grep dummy-vnfm | wc -l);
-        if [ "${result}" -ne "0" ]; then
-                echo "dummy-vnfm is already running.."
-		exit;
-        fi
+    pgrep -f dummy-vnfm-amqp-${_version}.jar > /dev/null
+    if [ "$?" -eq "0" ]; then
+        echo "Dummy-VNFM-Amqp is already running.."
+        exit;
+    fi
 }
 
 function start {
@@ -39,11 +23,11 @@ function start {
             compile
     fi
 
-    check_rabbitmq
     check_already_running
     if [ 0 -eq $? ]; then
-	    screen_exists=$(screen -ls | grep openbaton | wc -l);
-        if [ "${screen_exists}" -eq "0" ]; then
+        screen -ls | grep -v "No Sockets found" | grep -q openbaton
+	    screen_exists=$?
+        if [ "${screen_exists}" -ne "0" ]; then
             echo "Starting the Dummy-VNFM-Amqp in a new screen session (attach to the screen with screen -x openbaton)"
             if [ -f ${_dummy_config_file} ]; then
                 echo "Using external configuration file ${_dummy_config_file}"

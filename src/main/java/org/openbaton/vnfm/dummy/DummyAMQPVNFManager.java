@@ -222,12 +222,4 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
 
   @Override
   public void NotifyChange() {}
-
-  @Override
-  protected void checkEmsStarted(String hostname) {}
-
-  @Override
-  protected void checkEMS(String hostname) {
-    return;
-  }
 }

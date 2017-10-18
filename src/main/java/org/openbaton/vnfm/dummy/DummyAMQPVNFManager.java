@@ -116,7 +116,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord, VNFRecordDependency dependency)
       throws InterruptedException {
     log.debug(
-        "VirtualNetworkFunctionRecord VERSION is: " + virtualNetworkFunctionRecord.getHb_version());
+        "VirtualNetworkFunctionRecord VERSION is: " + virtualNetworkFunctionRecord.getHbVersion());
     log.debug("VirtualNetworkFunctionRecord NAME is: " + virtualNetworkFunctionRecord.getName());
     log.debug("Got dependency: " + dependency);
     log.debug("Parameters are: ");
@@ -136,7 +136,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) {
     log.debug("RELEASE_RESOURCES");
     log.info("Releasing resources for VNFR: " + virtualNetworkFunctionRecord.getName());
-    log.trace("Verison is: " + virtualNetworkFunctionRecord.getHb_version());
+    log.trace("Verison is: " + virtualNetworkFunctionRecord.getHbVersion());
     List<Event> events = new ArrayList<>();
 
     for (LifecycleEvent event : virtualNetworkFunctionRecord.getLifecycle_event()) {
@@ -165,7 +165,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   public VirtualNetworkFunctionRecord start(
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord) throws InterruptedException {
     log.debug(
-        "VirtualNetworkFunctionRecord VERSION is: " + virtualNetworkFunctionRecord.getHb_version());
+        "VirtualNetworkFunctionRecord VERSION is: " + virtualNetworkFunctionRecord.getHbVersion());
     Thread.sleep((int) (Math.random() * 2000) + 2000);
     return virtualNetworkFunctionRecord;
   }

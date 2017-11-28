@@ -22,7 +22,11 @@ import org.openbaton.catalogue.mano.descriptor.VirtualDeploymentUnit;
 import org.openbaton.catalogue.mano.record.VNFCInstance;
 import org.openbaton.catalogue.mano.record.VNFRecordDependency;
 import org.openbaton.catalogue.mano.record.VirtualNetworkFunctionRecord;
-import org.openbaton.catalogue.nfvo.*;
+import org.openbaton.catalogue.nfvo.Action;
+import org.openbaton.catalogue.nfvo.ConfigurationParameter;
+import org.openbaton.catalogue.nfvo.DependencyParameters;
+import org.openbaton.catalogue.nfvo.Script;
+import org.openbaton.catalogue.nfvo.viminstances.BaseVimInstance;
 import org.openbaton.common.vnfm_sdk.amqp.AbstractVnfmSpringAmqp;
 import org.springframework.boot.SpringApplication;
 
@@ -48,7 +52,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
   public VirtualNetworkFunctionRecord instantiate(
       VirtualNetworkFunctionRecord virtualNetworkFunctionRecord,
       Object scripts,
-      Map<String, Collection<VimInstance>> vimInstances)
+      Map<String, Collection<BaseVimInstance>> vimInstances)
       throws Exception {
     log.info(
         "Instantiation of VirtualNetworkFunctionRecord " + virtualNetworkFunctionRecord.getName());

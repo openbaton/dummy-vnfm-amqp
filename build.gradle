@@ -32,21 +32,21 @@ apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 
 repositories {
-        mavenLocal()
-        mavenCentral()
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
-        maven {
-            url "https://oss.sonatype.org/content/repositories/releases/"
-        }
-}
-
-dependencies {
-    compile 'org.openbaton:vnfm-sdk-amqp:5.0.0'
-    testCompile 'junit:junit:4.12'
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/releases/"
+    }
 }
 
 apply from: 'gradle/gradle/packaging.vnfm-dummy-amqp.docker.gradle'
 
-build.dependsOn verifyGoogleJavaFormat
+dependencies {
+    compile 'org.openbaton:vnfm-sdk-amqp:5.1.0-SNAPSHOT'
+}
+
+// Force code formatting
+compileJava.dependsOn tasks.googleJavaFormat

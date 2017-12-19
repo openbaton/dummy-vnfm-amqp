@@ -45,7 +45,7 @@ repositories {
 apply from: 'gradle/gradle/packaging.vnfm-dummy-amqp.docker.gradle'
 
 dependencies {
-    compile 'org.openbaton:vnfm-sdk-amqp:5.1.0'
+    compile 'org.openbaton:vnfm-sdk-amqp:5.1.2-SNAPSHOT'
 }
 
 // Force code formatting

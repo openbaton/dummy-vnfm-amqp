@@ -28,17 +28,20 @@ import org.openbaton.catalogue.nfvo.DependencyParameters;
 import org.openbaton.catalogue.nfvo.Script;
 import org.openbaton.catalogue.nfvo.viminstances.BaseVimInstance;
 import org.openbaton.common.vnfm_sdk.amqp.AbstractVnfmSpringAmqp;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by lto on 27/05/15.
- */
+@ConfigurationProperties
 public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
+
+  @Value("${vnfm.instantiate.wait:4000}") private int instantiateWait;
+  @Value("${vnfm.instantiate.wait.random:5000}") private int instantiateWaitRandom;
 
   protected void setVnfmHelper() {}
 
@@ -66,7 +69,7 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
     cp.setValue("new_value");
     virtualNetworkFunctionRecord.getConfigurations().getConfigurationParameters().add(cp);
 
-    Thread.sleep((int) (Math.random() * 5000) + 4000);
+    Thread.sleep((int) (Math.random() * instantiateWaitRandom) + instantiateWait);
 
     return virtualNetworkFunctionRecord;
   }

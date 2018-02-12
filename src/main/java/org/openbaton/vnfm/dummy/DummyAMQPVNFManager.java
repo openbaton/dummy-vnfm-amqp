@@ -40,8 +40,11 @@ import java.util.Map;
 @ConfigurationProperties
 public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
 
-  @Value("${vnfm.instantiate.wait:4000}") private int instantiateWait;
-  @Value("${vnfm.instantiate.wait.random:5000}") private int instantiateWaitRandom;
+  @Value("${vnfm.instantiate.wait:4000}")
+  private int instantiateWait;
+
+  @Value("${vnfm.instantiate.wait.random:5000}")
+  private int instantiateWaitRandom;
 
   protected void setVnfmHelper() {}
 

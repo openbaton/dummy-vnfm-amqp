@@ -226,6 +226,19 @@ public class DummyAMQPVNFManager extends AbstractVnfmSpringAmqp {
     return virtualNetworkFunctionRecord;
   }
 
+  @Override
+  public VirtualNetworkFunctionRecord executeScript(
+      VirtualNetworkFunctionRecord vnfr, Script script) throws Exception {
+    log.info(
+        "Executing Script "
+            + script.getName()
+            + " on VNFR "
+            + vnfr.getName()
+            + " with id "
+            + vnfr.getId());
+    return vnfr;
+  }
+
   public static void main(String[] args) {
     SpringApplication.run(DummyAMQPVNFManager.class, args);
   }
